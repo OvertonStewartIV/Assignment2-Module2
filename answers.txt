@@ -1,0 +1,15 @@
+Assignment 2: Module 2 - Threads and Context Switching
+
+1.1 Warmup: Both threads print the same PID because they share the same process resources.
+
+3.1 Join: I replaced pthread_yield() with pthread_join() to force the main thread to wait for the helper. This fixes the nondeterminism.
+
+3.2/3.3 Memory: Threads share the same address space. Modifications to stack variables (via pointers) or heap memory (via malloc) by one thread are visible to all others.
+
+3.4 Fork: fork() creates a duplicate process with its own memory. A thread in a child process cannot change variables in the parent process.
+
+3.6 Reflections: > - A context switch involves two kernel stacks (incoming and outgoing threads).
+
+The pop order in intr_exit must perfectly reverse the push order in intr_entry to restore registers correctly.
+
+Thread creation is faster than process creation because it doesn't require copying the entire address space.
